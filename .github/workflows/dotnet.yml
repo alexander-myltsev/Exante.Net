@@ -25,6 +25,6 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build /p:Configuration=Debug /v:quiet /p:WarningLevel=1 Exante.Net.sln
+      run: dotnet build /p:Configuration=Release /v:quiet /p:WarningLevel=1 Exante.Net.sln
     - name: Test
-      run: dotnet test ./Exante.Net.Tests/bin/Debug/net6.0/Exante.Net.Tests.dll
+      run: dotnet test ./Exante.Net.Tests/bin/Release/net6.0/Exante.Net.Tests.dll
