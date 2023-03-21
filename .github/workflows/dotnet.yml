@@ -8,18 +8,23 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
+    env:
+      EXANTE_CLIENT_ID: ${{ secrets.EXANTE_CLIENT_ID }}
+      EXANTE_APPLICATION_ID: ${{ secrets.EXANTE_APPLICATION_ID }}
+      EXANTE_SHARED_KEY: ${{ secrets.EXANTE_SHARED_KEY }}
+      EXANTE_ACCOUNT_ID: ${{ secrets.EXANTE_ACCOUNT_ID }}
+      EXANTE_PLATFORM_TYPE: ${{ secrets.EXANTE_PLATFORM_TYPE }}
 
     steps:
     - uses: actions/checkout@v2
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 5.0.x
+        dotnet-version: 6.0.x
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build /p:Configuration=Debug /v:quiet /p:WarningLevel=1 Exante.Net.sln
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test ./Exante.Net.Tests/bin/Debug/net6.0/Exante.Net.Tests.dll
