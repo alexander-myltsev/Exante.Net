@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     env:
       EXANTE_CLIENT_ID: ${{ secrets.EXANTE_CLIENT_ID }}
       EXANTE_APPLICATION_ID: ${{ secrets.EXANTE_APPLICATION_ID }}
